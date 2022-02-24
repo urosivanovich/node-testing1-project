@@ -8,6 +8,11 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  const copy = {}
+  for (let prop in obj) {
+    copy[prop] = prop.trim()
+  }
+  return copy
 }
 
 /**
@@ -20,6 +25,10 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
+  for (let prop in obj) {
+    obj[prop] = prop.trim()
+  }
+  return obj
 }
 
 /**
@@ -32,6 +41,13 @@ function trimPropertiesMutation(obj) {
  */
 function findLargestInteger(integers) {
   // ✨ implement
+  const arr = []
+  integers.forEach(obj => {
+    arr.push(obj.integer)
+  })
+  arr.sort((a,b) => b-a)
+
+  return arr[0]
 }
 
 class Counter {
@@ -41,6 +57,8 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+    this.count = initialNumber
+    
   }
 
   /**
@@ -56,7 +74,10 @@ class Counter {
    * counter.countDown() // returns 0
    */
   countDown() {
-    // ✨ implement
+    if (this.count > 0) {
+      return this.count--
+    }
+    return this.count
   }
 }
 
@@ -66,6 +87,7 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.season = 'spring'
   }
 
   /**
@@ -82,6 +104,16 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    if(this.season === 'spring'){
+       this.season = 'summer'
+    }else if(this.season === 'summer'){
+       this.season = 'fall'
+    }else if(this.season === 'fall'){
+       this.season = 'winter'
+    }else if(this.season === 'winter'){
+       this.season = 'spring'
+    }
+    return this.season
   }
 }
 
@@ -96,6 +128,8 @@ class Car {
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
+    this.gas = mpg
+    
   }
 
   /**
@@ -112,7 +146,8 @@ class Car {
    * focus.drive(200) // returns 600 (ran out of gas after 100 miles)
    */
   drive(distance) {
-    // ✨ implement
+    this.odometer += distance
+    
   }
 
   /**
@@ -127,7 +162,10 @@ class Car {
    * focus.refuel(99) // returns 600 (tank only holds 20)
    */
   refuel(gallons) {
-    // ✨ implement
+    if(gallons > this.tank){
+      return this.tank
+    }
+    return this.tank += gallons
   }
 }
 
